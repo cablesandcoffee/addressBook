@@ -153,7 +153,13 @@ function EmployeeList() {
               />
               {searchQuery && (
                 <button
-                  onClick={() => setSearchParams("")}
+                  onClick={() =>
+                    setSearchParams((prev) => {
+                      const next = new URLSearchParams(prev);
+                      next.delete("search");
+                      return next;
+                    })
+                  }
                   className="absolute right-3 top-1/2 -translate-y-1/2 text-[#D06039] hover:text-[#D06039] p-1 rounded-full hover:bg-gray-100 transition-colors"
                 >
                   <LuX size={20} />

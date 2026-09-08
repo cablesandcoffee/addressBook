@@ -1,6 +1,9 @@
 import { getEmployees } from "@/services";
 import { useQuery } from "@tanstack/react-query";
-import { LuX } from "react-icons/lu";
+import { GiRotaryPhone } from "react-icons/gi";
+import { HiOfficeBuilding } from "react-icons/hi";
+import { LuMail, LuX } from "react-icons/lu";
+import { MdOutlineSmartphone } from "react-icons/md";
 import { useLocation, useNavigate, useParams } from "react-router";
 
 function EmployeeDetail() {
@@ -36,27 +39,36 @@ function EmployeeDetail() {
   if (!employee) return;
 
   return (
-    <div className="relative z-10 flex flex-col w-full flex-1 md:w-200 justify-start items-center p-2 gap-2 bg-white rounded-md">
-      <div className="relative flex flex-col w-full flex-1 justify-start items-center rounded-md shadow-sm p-2 gap-4">
+    <div className="flex w-full min-h-[100dvh] flex-1 justify-center items-center bg-white p-10">
+      <div className="relative flex flex-col bg-white w-full md:max-w-96 flex-1 items-center rounded-4xl ring-10 ring-[#CCEBC2] px-3 py-7 gap-2">
         <img
-          className="w-32 h-32 rounded-full border border-white/70 object-cover"
+          className="w-32 h-32 shrink-0 object-cover rounded-full border ring-4 ring-gray-200"
           src={employee.picture.large}
         />
         <LuX
-          size={25}
-          className="absolute top-2 right-2 cursor-pointer text-black"
+          size={40}
+          className="absolute top-4 right-4 p-2 text-gray-500 hover:text-black hover:bg-gray-100 rounded-full transition-colors cursor-pointer"
           onClick={() => handleClose()}
         />
-        <div className="text-black text-3xl font-bold">{`${employee.name.first} ${employee.name.last}`}</div>
-        <div className="relative flex w-full rounded-md gap-2 text-black">
-          <div className="flex flex-col items-start">
-            <div>{`Email: ${employee.email}`}</div>
-            <div>{`Mobile: ${employee.cell}`}</div>
-            <div>{`Phone: ${employee.phone}`}</div>
-            <span className="mt-5 font-bold">Address:</span>
-            <div>{`${employee.location.street.name} ${employee.location.street.number}`}</div>
-            <div>{employee.location.city}</div>
-            <div>{employee.location.country}</div>
+        <div className="flex self-start text-black text-3xl font-bold pt-5">{`${employee.name.first} ${employee.name.last}`}</div>
+        <div className="flex w-full rounded-md gap-2 text-black">
+          <div className="grid grid-cols-[20px_1fr] items-center gap-1 whitespace-nowrap text-sm">
+            <LuMail size={15} />
+            <div className="truncate min-w-0 text-gray-600">{`${employee.email}`}</div>
+            <MdOutlineSmartphone size={15} />
+            <div className="truncate min-w-0 text-gray-600">{`${employee.cell}`}</div>
+            <GiRotaryPhone size={15} />
+            <div className="truncate min-w-0 text-gray-600">{`${employee.phone}`}</div>
+            <HiOfficeBuilding size={15} className="self-start mt-4" />
+            <div className="mt-3">
+              <div className="truncate min-w-0 text-gray-600">{`${employee.location.street.name} ${employee.location.street.number}`}</div>
+              <div className="truncate min-w-0 text-gray-600">
+                {employee.location.city}
+              </div>
+              <div className="truncate min-w-0 text-gray-600">
+                {employee.location.country}
+              </div>
+            </div>
           </div>
         </div>
       </div>

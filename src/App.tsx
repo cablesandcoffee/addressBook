@@ -1,5 +1,3 @@
-import { BiSearch } from "react-icons/bi";
-import { LuArrowUpDown, LuSearch } from "react-icons/lu";
 import { Outlet } from "react-router";
 
 function App() {
