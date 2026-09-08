@@ -4,6 +4,7 @@ import "./index.css";
 import { RouterProvider } from "react-router";
 import router from "./router.tsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import "@fontsource-variable/plus-jakarta-sans";
 
 const queryClient = new QueryClient();
 

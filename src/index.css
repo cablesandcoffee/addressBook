@@ -1,5 +1,16 @@
 @import "tailwindcss";
 
+@theme {
+  --font-sans: "Plus Jakarta Sans Variable", "Plus Jakarta Sans", sans-serif;
+}
+
+@layer utilities {
+  .h-viewport {
+    height: 100vh; /* 1. TV & older browsers use this */
+    height: 100dvh; /* 2. Modern phones override with this */
+  }
+}
+
 .btn-grad {
   background-image: linear-gradient(
     to right,

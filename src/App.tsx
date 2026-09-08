@@ -1,17 +1,23 @@
+import { BiSearch } from "react-icons/bi";
+import { LuArrowUpDown, LuSearch } from "react-icons/lu";
 import { Outlet } from "react-router";
 
 function App() {
   return (
-    <div className="relative flex w-full overflow-hidden bg-white text-white justify-center">
+    <div className="relative min-h-[100dvh] w-full overflow-hidden bg-black text-white">
       <div
-        className="absolute inset-0 z-0 bg-cover bg-center opacity-100"
+        className="absolute inset-0 z-0 bg-[#FFFFFF] opacity-100"
         // style={{
-        //   background: "linear-gradient(to top, #5c7852, #9fa0a8)",
+        //   background: "linear-gradient(to right, #cececf, #b2b2b4)",
         // }}
       />
-      <Outlet />
+
+      <div className="relative z-10 flex flex-col w-full min-h-[100dvh] justify-start items-center">
+        <Outlet />
+      </div>
     </div>
   );
 }
 
 export default App;
+// background: linear-gradient(to right, #ddefbb, ##7a2828);
