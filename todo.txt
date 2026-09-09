@@ -1,0 +1,38 @@
+Address book
+
+KLART --- Install tailwind
+
+KLART --- Create two pages:
+    employeeList
+    employeeDetail
+
+KLART --- Add router to navigate between pages, employeeDetail should have :id
+
+KLART --- install react query
+
+KLART ---  install react query devtools to chrome
+
+KLART --- fetch data from random API first without react query to see what it looks like and behaves
+
+KLART --- map and print out a simple employess list
+
+KLART --- filter employee list on employeeDetail and print single employer
+
+KLART --- add react qeuery and fetch data with that instead
+
+KLART --- add fetching function to both pages 
+
+KLART --- add search and sorting functionality
+
+If searching and opening detail page and go back search and sort should be remembered
+
+pressing search on phone reloads page
+
+work with css and design the app properly
+
+deploy application
+
+
+
+
+

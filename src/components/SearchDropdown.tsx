@@ -39,7 +39,7 @@ function SearchDropDown({
               type="search"
               value={searchQuery}
               onChange={(e) => onSearchParamChange("search", e.target.value)}
-              placeholder="Search..."
+              placeholder="Search employee name..."
               className="w-full p-2 border border-gray-200 rounded-lg outline-none focus:border-[#CCEBC2] focus:ring-2 focus:ring-[#CCEBC2]/30 transition-all [&::-webkit-search-cancel-button]:appearance-none"
             />
             {searchQuery && (

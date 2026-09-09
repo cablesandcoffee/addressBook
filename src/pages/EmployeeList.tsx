@@ -30,7 +30,7 @@ function EmployeeList() {
     );
   }
 
-  // removed to move forward and not loosing time. implement later.
+  // TODO removed to move forward and not loosing time. implement later and use where needed
   // type sortValues = "lastname" | "firstname" | "country";
 
   const sortConfigs: Record<
