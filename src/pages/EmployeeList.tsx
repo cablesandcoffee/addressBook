@@ -54,27 +54,6 @@ function EmployeeList() {
     queryFn: getEmployees,
   });
 
-  let filteredEmployees = employees;
-  if (employees && searchQuery) {
-    filteredEmployees = employees.filter(
-      (employee) =>
-        employee.name.first.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        employee.name.last.toLowerCase().includes(searchQuery.toLowerCase()),
-    );
-  }
-
-  const sortedEmployees = orderBy(
-    filteredEmployees,
-    currentSort.path,
-    currentSort.dir,
-  );
-
-  const groupedEmployees = groupBy(sortedEmployees, (emp) => {
-    if (sortBy === "lastname") return emp.name.last[0].toUpperCase();
-    if (sortBy === "firstname") return emp.name.first[0].toUpperCase();
-    if (sortBy === "country") return emp.location.country.toUpperCase();
-  });
-
   if (isLoading)
     return (
       <div className="flex w-full flex-1 items-center justify-center text-black">
@@ -89,6 +68,35 @@ function EmployeeList() {
     );
   }
 
+  if (!employees) return;
+
+  const query = searchQuery.trim().toLowerCase();
+
+  const filteredEmployees = query
+    ? employees.filter((employee) => {
+        const fullNameFirstFirst =
+          `${employee.name.first} ${employee.name.last}`.toLowerCase();
+        const fullNameLastFirst =
+          `${employee.name.last} ${employee.name.first}`.toLowerCase();
+        return (
+          fullNameFirstFirst.includes(query) ||
+          fullNameLastFirst.includes(query)
+        );
+      })
+    : employees;
+
+  const sortedEmployees = orderBy(
+    filteredEmployees,
+    currentSort.path,
+    currentSort.dir,
+  );
+
+  const groupedEmployees = groupBy(sortedEmployees, (emp) => {
+    if (sortBy === "lastname") return emp.name.last[0].toUpperCase() ?? "#";
+    if (sortBy === "firstname") return emp.name.first[0].toUpperCase() ?? "#";
+    if (sortBy === "country") return emp.location.country.toUpperCase() ?? "#";
+  });
+
   return (
     <div className="relative z-10 flex flex-col w-full flex-1 md:w-200 justify-start items-center gap-2 bg-[#FFFFFF] rounded-md">
       {/* TOP BAR MENU */}
@@ -101,7 +109,7 @@ function EmployeeList() {
               setIsSearchOpen(false);
             }}
             className="text-black cursor-pointer"
-            type-button
+            type="button"
             aria-label="Toggle sorting menu"
           >
             <LuArrowUpDown size={25} />
@@ -112,7 +120,7 @@ function EmployeeList() {
               setIsSortOpen(false);
             }}
             className={`cursor-pointer ${searchParams.get("search") && !isSearchOpen ? "text-[#D06039]" : "text-black"}`}
-            type-button
+            type="button"
             aria-label="Toggle search window"
           >
             <LuSearch size={25} />
