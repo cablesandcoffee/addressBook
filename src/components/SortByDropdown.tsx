@@ -13,6 +13,12 @@ function SearchDropDown({
   setIsSortOpen,
   sortBy,
 }: SearchDropDownProps) {
+  const radioInputs: { value: string; label: string }[] = [
+    { value: "lastname", label: "Last name" },
+    { value: "firstname", label: "First name" },
+    { value: "country", label: "Country" },
+  ];
+
   return (
     <AnimatePresence initial={false}>
       {isSortOpen ? (
@@ -35,39 +41,21 @@ function SearchDropDown({
             key="sort"
           >
             <div className="flex w-full h-full items-center justify-between md:justify-end gap-2">
-              <label className="flex gap-1">
-                <input
-                  type="radio"
-                  value="lastname"
-                  name="sortBy"
-                  checked={sortBy === "lastname"}
-                  onChange={(e) => onSearchParamChange("sort", e.target.value)}
-                  className="accent-[#D06039]"
-                />
-                Last name
-              </label>
-              <label className="flex gap-1">
-                <input
-                  type="radio"
-                  value="firstname"
-                  name="sortBy"
-                  checked={sortBy === "firstname"}
-                  onChange={(e) => onSearchParamChange("sort", e.target.value)}
-                  className="accent-[#D06039]"
-                />
-                First name
-              </label>
-              <label className="flex gap-1">
-                <input
-                  type="radio"
-                  value="country"
-                  name="sortBy"
-                  checked={sortBy === "country"}
-                  onChange={(e) => onSearchParamChange("sort", e.target.value)}
-                  className="accent-[#D06039]"
-                />
-                Country
-              </label>
+              {radioInputs.map((input) => (
+                <label className="flex gap-1">
+                  <input
+                    type="radio"
+                    value={input.value}
+                    name="sortBy"
+                    checked={sortBy === input.value}
+                    onChange={(e) =>
+                      onSearchParamChange("sort", e.target.value)
+                    }
+                    className="accent-[#D06039]"
+                  />
+                  {input.label}
+                </label>
+              ))}
             </div>
           </motion.div>
         </>
